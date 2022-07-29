@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="mb-3">
+    <p class="h4">วันนี้ คุณทำงานเท่าหมอกี่คน? ฟอร์มคำนวนจากวิธีการคำนวนภาระงานของกระทรวงสาธารณสุข โดยสมาพันธ์แพทย์ผู้ปฏิบัติงาน (สพง.)</p>
+</div>
+<div>
+    {% csrf_token %}
+    {% crispy form %}
+</div>
+
+
+{% endblock %}

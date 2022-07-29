@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% csrf_token %}
+<div>
+    <div>
+        <p class="h1">งานของคุณคิดเป็นเวลา {{minute_per_year}} นาทีต่อปี. คุณทำงานเท่ากับ</p>
+    </div>
+    <div>
+        <h1 class="display-1">{{human}}</h1>
+    </div>
+    <div>
+        <h3 class="display-3">คน</h3>
+    </div>
+</div>
+<div class="p-3 mt-5 bg-light text-dark">
+    <p class="h4 mb-4">
+        วิธีการคำนวน
+    </p>
+    <p>
+        [(OPD) {{data.opd}} × {{WorkMultiplier.OPD}} + 
+        (IPD) {{data.ipd}} × {{WorkMultiplier.IPD}} + 
+        (ER) {{data.er}} × {{WorkMultiplier.ER}} + 
+        (ICU) {{data.icu}} × {{WorkMultiplier.ICU}} + 
+        (labour) {{data.labour}} × {{WorkMultiplier.LABOUR}}] / 5 × 1.15 = {{minute_per_day}} นาทีต่อวัน
+    </p>
+    <p>
+        {{minute_per_day}} × 230 = {{minute_per_year}} นาทีต่อปี
+    </p>
+</div>
+
+
+<div class="p-3 mt-5 bg-light text-dark">
+    <p>
+        แหล่งอ้างอิงสูตรคำนวณ: คู่มือโครงสร้างและอัตรากำลัง หน่วยงานในราชการบริหารส่วนภูมิภาค (ปี พ.ศ. 2560-2564)
+    </p>
+    <p>
+        source code: https://github.com/44REAM/FTE_calculator
+    </p>
+</div>
+
+{% endblock %}
